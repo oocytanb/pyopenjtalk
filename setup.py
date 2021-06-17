@@ -14,7 +14,7 @@ import setuptools.command.build_py
 import setuptools.command.develop
 from setuptools import Extension, find_packages, setup
 
-platform_is_windows = sys.platform == "win32"
+platform_is_windows = os.name == 'nt'
 
 version = "0.1.2"
 
@@ -109,7 +109,7 @@ if len(sys.argv) > 5:
         # read
         with open(file_name, mode="r", encoding=file_encoding) as fd:
             return fd.readline() != arg_value
-    except (DistutilsExecError, TypeError):
+    except (DistutilsExecError, OSError, TypeError):
         return False
 
 
